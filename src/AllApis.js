@@ -1,14 +1,15 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_URL = 'https://student-app-be-7wfo.onrender.com';
+const API_URL = "https://student-app-be-7wfo.onrender.com";
 
 export const getAllStudents = async () => {
   try {
-    const response = await axios.get(API_URL);
-    return response.data;
+    const response = await axios.get(`${API_URL}/students`);
+    console.log("API Response:", response.data);
+    return Array.isArray(response.data) ? response.data : [];
   } catch (error) {
     console.error("Error fetching students:", error);
-    throw error;
+    return [];
   }
 };
 
